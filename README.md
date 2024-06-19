@@ -66,64 +66,64 @@ yarn add @aws-sdk/client-dynamodb
 ```
 
 #### Modify Files
-- \_posts\
+- **\_posts**  
 Blog Articles Directory  
 Delete the original three Blog .md files  
 Create two new Blog .md files
 
-- \public\assets\blog\authors\
+- **\public\assets\blog\authors**  
 Blog Author Avatar Images Directory  
 Delete the original three avatar images  
 Create an avatar image of Ethan with the same dimensions
 
-- \public\assets\blog\meet-ethan\ and \public\assets\blog\my-awesome-family\
+- **\public\assets\blog\meet-ethan\ and \public\assets\blog\my-awesome-family**  
 The images for blog articles are located in the directory \public\assets\blog, with one directory per blog.  
 Delete the original three blog image directories.  
 Create two new image directories corresponding to the above blog articles and copy the images into them.
 
-- \public\favicon\
+- **\public\favicon**  
 Icons Directory 
 Replace the original icons with new project icons, totaling 8.  
 Change the values of "name": "Next.js" and "short_name": "Next.js" in the site.webmanifest file to "Ethan Ruizhe Cao".
 
-- \src\app\_components\footer.tsx
+- **\src\app\_components\footer.tsx**  
 Modify Footer
 
-- \src\app\_components\header.tsx
+- **\src\app\_components\header.tsx**  
 Modify Header Top Left Text
 
-- \src\app\_components\intro.tsx
+- **\src\app\_components\intro.tsx**  
 Modify the Top Sections on the Left and Right of the Homepage
 
-- \src\app\posts\[slug]\page.tsx
+- **\src\app\posts\[slug]\page.tsx**  
 Comment out the warning at the top of the page.  
 { /* <Alert preview={post.preview} /> */ }
 
-- \app\layout.tsx
+- **\app\layout.tsx**  
 Modify Metadata
 
-- \src\lib\markdownToHtml.ts
+- **\src\lib\markdownToHtml.ts**  
 Do not filter HTML code during Markdown conversion, as there might be videos included.
 // const result = await remark().use(html).process(markdown);
 const result = await remark().use(html, { sanitize: false }).process(markdown)
 
-- README.md
+- **README.md**  
 Rewrite the project documentation.
 
 #### The Timeline Component
-- \src\app\myjourney\page.tsx
+- **\src\app\myjourney\page.tsx**  
 Timeline main page
 
-- \src\app\_components\timeline.tsx
+- **\src\app\_components\timeline.tsx**  
 The <EthanTimeline /> component used on the page
 
-- \src\lib\getTimelineData.ts
+- **\src\lib\getTimelineData.ts**  
 The function to retrieve data from the database
 
-- \src\interfaces\timelineitem.ts
+- **\src\interfaces\timelineitem.ts**  
 Defining the format of data retrieved from the database
 
-- \.env
+- **\.env**  
 AWS DynamoDB database keys environment variable, do not sync to GitHub.  
 Add this file to .gitignore
 
@@ -135,26 +135,26 @@ A table designed to describe the Timeline of Ethan's journey.
 This is currently the only table on ethanrzcao project.
 
 Each item definitely includes the following four parts:  
-- **date**
+- **date**  
 string  
 Most are like "20/10/2021," with a few like "July 2023."
-- **type**
+- **type**  
 string  
 Similar to the icon names in the @mui/icons-material/ package, such as Museum, Hotel, etc.
-- **event**
+- **event**  
 string  
-- **description**
+- **description**  
 string  
-- **timelineOrder**
+- **timelineOrder**  
 number
 Specifically designed for sorting purposes, the numeric format is 'YYYYMMDD00', where the last two digits '00' are used to differentiate between different events on the same day.
-- **type = Hotel**
+- **type = Hotel**  
 When the type is Hotel, there will be:  
 hotel group, hotel brand, hotel name, hotel city, Hotel country, number of nights
-- **type = Museum**
+- **type = Museum**  
 When the type is Museum, there will be:  
 museum name, museum city, museum country
-- **type = FlightTakeoff | FlightLand | Fight**
+- **type = FlightTakeoff | FlightLand | Fight**  
 When the type is FlightTakeoff，or FlightLand, or Fight, there will be:  
 airline, aircraft type, flight number, cabin class, departure city and departureCountry (No, when FlightLand available), arrival city and arrivalCountry (No, when FlightTakeoff available)
 
