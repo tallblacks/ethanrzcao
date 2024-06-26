@@ -22,7 +22,6 @@ export const getTimelineData = async (): Promise<EthanTimelineItem[]> => {
     })
 
     const response = await client.send(command)
-    console.log(response)
     // 将 DynamoDB 响应映射到 TimelineItem 数组
     const timelineItems: EthanTimelineItem[] = response.Items? response.Items.map((item) => ({
         type: item.type.S || "",
