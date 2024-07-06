@@ -9,6 +9,7 @@ Ethan is my son, and this website is his personal site. I hope Ethan will mainta
 - UI Components: Material UI
 - Cloud Hosting: Vercel
 - Database: AWS DynamoDB
+- API: AWS API Gateway & AWS Lambda
 
 ## Project Selection
 
