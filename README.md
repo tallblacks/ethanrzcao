@@ -44,6 +44,13 @@ I plan to store the TimeLine data in the database. The data includes staying in 
 Although we can organize the data into time, place, people, and events, my intuition leans towards a NoSQL database.
 Therefore, I chose AWS DynamoDB for this project.
 
+#### AWS Lambda & AWS API Gateway
+When I completed the first version of this site, I took some AWS DynamoDB courses. I completed the 'Amazon DynamoDB Service Introduction,' 'Amazon DynamoDB Service Primer,' and 'Developing with Amazon DynamoDB' courses online.  
+
+I realized that it would be better to use AWS Lambda to access data from DynamoDB. So, I wrote an AWS Lambda function to retrieve the data and used AWS API Gateway to invoke the Lambda function.  
+
+This way, the website only needs to access the API Gateway's HTTP API to get the data. Please refer to the Changelogs for details on July 6, 2024.  
+
 ## Project Development
 
 #### Setting Up Project
@@ -167,3 +174,13 @@ git branch -M main
 git remote add origin https://github.com/tallblacks/ethanrzcao.git
 git push -u origin main
 ```
+
+## Changelogs
+
+#### 06 July 2024
+Modify the code to change from directly accessing DynamoDB to accessing AWS API Gateway.  
+
+No longer use /src/lib/getTimelineData.ts, use /src/lib/fetchTimelineData.ts instead.  
+
+Store the API Gateway URL in environment variables.  
+The environment file will no longer store AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.

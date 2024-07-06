@@ -1,3 +1,6 @@
+// This file was used to directly access DynamoDB for data. 
+// Since I switched to using API Gateway, this file is no longer needed.
+
 import dotenv from "dotenv"
 import { ScanCommand , DynamoDBClient } from "@aws-sdk/client-dynamodb"
 import { EthanTimelineItem } from "@/interfaces/timelineitem"

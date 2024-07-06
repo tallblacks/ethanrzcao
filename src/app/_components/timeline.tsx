@@ -20,7 +20,8 @@ import ChildCare from "@mui/icons-material/ChildCare"
 
 import React from "react"
 import { EthanTimelineItem } from "@/interfaces/timelineitem"
-import { getTimelineData } from "@/lib/getTimelineData"
+import { fetchTimelineData } from "@/lib/fetchTimelineData"
+// import { getTimelineData } from "@/lib/getTimelineData"
 
 const iconComponents = {
     'Celebration': Celebration,
@@ -43,7 +44,7 @@ const getIconComponent = (iconName: keyof typeof iconComponents) => {
 
 export default async function EthanTimeline() {
     try {
-        const data: EthanTimelineItem[] = await getTimelineData()
+        const data: EthanTimelineItem[] = await fetchTimelineData()
 
         return (
             <Timeline position="alternate">
