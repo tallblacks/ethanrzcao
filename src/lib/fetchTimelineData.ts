@@ -3,6 +3,8 @@ import { EthanTimelineItem } from "@/interfaces/timelineitem"
 
 dotenv.config()
 
+console.log("API_URL:", process.env.API_URL) 
+
 export const fetchTimelineData = async (): Promise<EthanTimelineItem[]> => {
     try {
         const response = await fetch(process.env.API_URL as string)
