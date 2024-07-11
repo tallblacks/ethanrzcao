@@ -10,6 +10,7 @@ Ethan is my son, and this website is his personal site. I hope Ethan will mainta
 - Cloud Hosting: Vercel
 - Database: AWS DynamoDB
 - API: AWS API Gateway & AWS Lambda
+- Analytics: Google Analytics
 
 ## Project Selection
 
@@ -51,6 +52,11 @@ When I completed the first version of this site, I took some AWS DynamoDB course
 I realized that it would be better to use AWS Lambda to access data from DynamoDB. So, I wrote an AWS Lambda function to retrieve the data and used AWS API Gateway to invoke the Lambda function.  
 
 This way, the website only needs to access the API Gateway's HTTP API to get the data. Please refer to the Changelogs for details on July 6, 2024.  
+
+#### Google Analytics
+Of course, I use Google Analytics for website traffic analysis.  
+
+Next.js has an experimental feature for [Third Party Libraries](https://nextjs.org/docs/app/building-your-application/optimizing/third-party-libraries), and [the part about Google Analytics](https://nextjs.org/docs/app/building-your-application/optimizing/third-party-libraries#google-analytics) is very simple to use.
 
 ## Project Development
 
@@ -181,7 +187,32 @@ git push -u origin main
 #### 06 July 2024
 Modify the code to change from directly accessing DynamoDB to accessing AWS API Gateway.  
 
-No longer use /src/lib/getTimelineData.ts, use /src/lib/fetchTimelineData.ts instead.  
+No longer use \src\lib\getTimelineData.ts, use \src\lib\fetchTimelineData.ts instead.  
 
 Store the API Gateway URL in environment variables.  
 The environment file will no longer store AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.
+
+#### 11 July 2024
+Added Google Analytics code by installing the experimental NextJS package. 
+```bash
+yarn add @next/third-parties@latest
+```  
+
+Add the 'MEASUREMENT ID' to the .env file  
+
+Add analytics code in \src\app\layout.tsx
+```layout.tsx
+import { GoogleAnalytics } from '@next/third-parties/google'
+import dotenv from "dotenv"
+
+dotenv.config()
+
+<GoogleAnalytics gaId={process.env.Google_Analytics as string} />
+```
+
+Created a \src\app\myjourney\layout.tsx file for the My Journey page, specifying a page title.  
+
+Modified \src\app\posts\[slug]\page.tsx for the page title.
+```page.tsx
+const title = `${post.title} | Discover Ethan`
+```
