@@ -2,8 +2,12 @@ import Footer from "@/app/_components/footer";
 import { CMS_NAME, HOME_OG_IMAGE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { GoogleAnalytics } from '@next/third-parties/google'
+import dotenv from "dotenv"
 
 import "./globals.css";
+
+dotenv.config()
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -59,6 +63,7 @@ export default function RootLayout({
         <div className="min-h-screen">{children}</div>
         <Footer />
       </body>
+      <GoogleAnalytics gaId={process.env.Google_Analytics as string} />
     </html>
   );
 }
