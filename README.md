@@ -216,3 +216,6 @@ Modified \src\app\posts\[slug]\page.tsx for the page title.
 ```page.tsx
 const title = `${post.title} | Discover Ethan`
 ```
+
+#### 15 July 2024
+Add support for the Subway icon to the timeline component
