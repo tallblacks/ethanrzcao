@@ -19,6 +19,7 @@ import Flight from "@mui/icons-material/Flight"
 import ChildCare from "@mui/icons-material/ChildCare"
 import SubwayIcon from '@mui/icons-material/Subway'
 import PetsIcon from '@mui/icons-material/Pets'
+import FestivalIcon from '@mui/icons-material/Festival'
 
 import React from "react"
 import { EthanTimelineItem } from "@/interfaces/timelineitem"
@@ -38,7 +39,8 @@ const iconComponents = {
     'Flight': Flight,
     'ChildCare': ChildCare,
     'Subway': SubwayIcon,
-    'Pets': PetsIcon
+    'Pets': PetsIcon,
+    'Festival': FestivalIcon
 }
 
 const getIconComponent = (iconName: keyof typeof iconComponents) => {

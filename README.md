@@ -219,3 +219,6 @@ const title = `${post.title} | Discover Ethan`
 
 #### 15 July 2024
 Add support for the Subway icon to the timeline component
+
+#### 07 November 2024
+Add support for the Festival icon to the timeline component
