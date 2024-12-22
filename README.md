@@ -225,3 +225,6 @@ Add support for the Festival icon to the timeline component
 
 #### 09 November 2024
 Update Lambda and API Gateway names
+
+#### 22 December 2024
+Add support for the MartialArts icon to the timeline component
