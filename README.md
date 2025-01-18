@@ -228,3 +228,11 @@ Update Lambda and API Gateway names
 
 #### 22 December 2024
 Add support for the MartialArts icon to the timeline component
+
+#### 18 January 2025
+Added access control for the HTTP API of API Gateway
+Used Lambda authorization method
+Also applied route throttling limits
+The modified file is fetchTimelineData.ts
+
+Additionally, due to issues with my personal computer and my transition to using pnpm, there are other files showing changes related to yarn, which can be ignored since the project is still using yarn.

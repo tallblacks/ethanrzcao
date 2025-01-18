@@ -9,7 +9,7 @@ export const fetchTimelineData = async (): Promise<EthanTimelineItem[]> => {
         const response = await fetch(process.env.API_URL as string, {
             method: 'GET',
             headers: {
-                'Authorization': `H4rry_P0tt3r!@H@lfBl00d_Pr1nc3`
+                'Authorization': process.env.APIGATEWAY_HTTP_AUTH as string
             }
         })
         const data = await response.json()
