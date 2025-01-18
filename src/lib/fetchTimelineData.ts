@@ -13,7 +13,7 @@ export const fetchTimelineData = async (): Promise<EthanTimelineItem[]> => {
             }
         })
         const data = await response.json()
-
+        console.log(response)
         if (response.status !== 200) {
             throw new Error(data.body)
         }
