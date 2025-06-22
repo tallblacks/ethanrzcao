@@ -318,14 +318,12 @@ Note: when using generateMetadata, make sure to decode params.slug.
 the returned PDF view in page.tsx uses full-screen fixed positioning:
 fixed inset-0: ensures the PDF container covers the entire viewport
 z-50: ensures the PDF displays above all other elements
-bg-white: provides a clean white background  
-
+bg-white: provides a clean white background
 PDF <object> is absolutely positioned:  
 absolute inset-0 w-full h-full: ensures the PDF fills the entire container
 
 - Updated getPostBySlug in \src\lib\api.ts
-When using a YAML file to describe the metadata of a PDF, TypeScript may not be able to guarantee whether certain properties exist on the metadata object.  
-
+When using a YAML file to describe the metadata of a PDF, TypeScript may not be able to guarantee whether certain properties exist on the metadata object.
 Used Partial<Post>: Indicates that the metadata object may only include a subset of the properties defined in the Post type.  
 Explicit return type: The function signature getPostBySlug(slug: string): Post ensures the returned value always conforms to the Post type.  
 Safe property access: Used optional chaining like metadata.ogImage?.url to safely access nested properties.  
