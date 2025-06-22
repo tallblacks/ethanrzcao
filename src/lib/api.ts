@@ -13,7 +13,7 @@ export function getPostBySlug(slug: string) {
   const realSlug = /\.(md|pdf)$/.test(slug) ? slug.replace(/\.(md|pdf)$/, "") : slug;
 
   let fullPath = join(postsDirectory, `${realSlug}.md`);
-  let fileType = 'md';
+  let fileType: 'md' | 'pdf' = 'md';
 
   if (!fs.existsSync(fullPath)) {
     fullPath = decodeURIComponent(join(postsDirectory, `${realSlug}.pdf`));
@@ -30,11 +30,11 @@ export function getPostBySlug(slug: string) {
     return { ...data, slug: realSlug, content, fileType } as Post;
   } else {
     const yamlPath = join(postsDirectory, `${realSlug}.yaml`);
-    let metadata = {};
+    let metadata: Partial<Post> = {};
 
     if (fs.existsSync(yamlPath)) {
       const yamlContent = fs.readFileSync(yamlPath, 'utf8');
-      metadata = matter(yamlContent).data;
+      metadata = matter(yamlContent).data as Partial<Post>;
     }
 
     if (!metadata.ogImage || !metadata.ogImage.url) {
@@ -42,14 +42,18 @@ export function getPostBySlug(slug: string) {
     }
     return {
       slug: realSlug,
-      title: metadata.title,
-      date: metadata.date,
-      excerpt: metadata.excerpt,
-      coverImage: metadata.coverImage,
+      title: metadata.title || 'Untitled',
+      date: metadata.date || new Date().toISOString(),
+      excerpt: metadata.excerpt || '',
+      coverImage: metadata.coverImage || '',
       ogImage: {
-        url: metadata.ogImage.url,
+        url: metadata.ogImage?.url || '',
       },
-      author: metadata.author,
+      author: metadata.author || {
+        name: 'Unknown',
+        picture: '',
+      },
+      content: '',
       fileType: 'pdf',
     } as Post;
   }
