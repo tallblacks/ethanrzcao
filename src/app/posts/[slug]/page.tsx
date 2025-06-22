@@ -10,31 +10,53 @@ import { PostBody } from "@/app/_components/post-body";
 import { PostHeader } from "@/app/_components/post-header";
 
 export default async function Post({ params }: Params) {
-  const post = getPostBySlug(params.slug);
+  const decodedSlug = decodeURIComponent(params.slug);
+  const post = getPostBySlug(decodedSlug);
 
   if (!post) {
     return notFound();
   }
 
-  const content = await markdownToHtml(post.content || "");
+  if (post.fileType === "md") {
+    const content = await markdownToHtml(post.content || "");
 
-  return (
-    <main>
-      { /* <Alert preview={post.preview} /> */ }
-      <Container>
-        <Header />
-        <article className="mb-32">
-          <PostHeader
-            title={post.title}
-            coverImage={post.coverImage}
-            date={post.date}
-            author={post.author}
-          />
-          <PostBody content={content} />
-        </article>
-      </Container>
-    </main>
-  );
+    return (
+      <main>
+        { /* <Alert preview={post.preview} /> */ }
+        <Container>
+          <Header />
+          <article className="mb-32">
+            <PostHeader
+              title={post.title}
+              coverImage={post.coverImage}
+              date={post.date}
+              author={post.author}
+            />
+            <PostBody content={content} />
+          </article>
+        </Container>
+      </main>
+    );
+  } else {
+    return (
+      <div className="fixed inset-0 bg-white z-50">
+        <object
+          data={`/pdfs/${post.slug}.pdf`}
+          type="application/pdf"
+          width="100%"
+          height="100%"
+          className="absolute inset-0 w-full h-full"
+        >
+          <p>
+            Your browser does not support embedded PDFs. Please{" "}
+            <a href={`/pdfs/${post.slug}.pdf`} target="_blank" rel="noopener noreferrer">
+              download the PDF
+            </a>.
+          </p>
+        </object>
+      </div>
+    );
+  }
 }
 
 type Params = {
@@ -43,8 +65,9 @@ type Params = {
   };
 };
 
-export function generateMetadata({ params }: Params): Metadata {
-  const post = getPostBySlug(params.slug);
+export function generateMetadata({ params }: Params): Metadata{
+  const decodedSlug = decodeURIComponent(params.slug);
+  const post = getPostBySlug(decodedSlug);
 
   if (!post) {
     return notFound();

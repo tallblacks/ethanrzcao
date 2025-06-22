@@ -239,20 +239,20 @@ Additionally, due to issues with my personal computer and my transition to using
 
 #### 19 June 2025
 ###### Migrated the project from Yarn to pnpm
-Check the local project
+- Check the local project
 ```bash
 git clone https://github.com/tallblacks/ethanrzcao.git
 cd ethanrzcao
 git remote -v
 ```
 
-Ensured relevant entries are included in `.gitignore`
+- Ensured relevant entries are included in `.gitignore`
 ```.gitignore
 /node_modules
 .pnpm-debug.log*
 ```
 
-Removed Yarn-related files, including `yarn.lock` and `package-lock.json`
+- Removed Yarn-related files, including `yarn.lock` and `package-lock.json`
 ```bash
 # Linux or Mac
 rm -rf node_modules yarn.lock package-lock.json .turbo .next
@@ -261,7 +261,7 @@ rm -rf node_modules yarn.lock package-lock.json .turbo .next
 Remove-Item -Recurse -Force node_modules, yarn.lock, package-lock.json, .turbo, .next
 ```
 
-Optional: Installed and configured pnpm (skip if already installed)
+- Optional: Installed and configured pnpm (skip if already installed)
 ```bash
 npm install -g pnpm
 pnpm setup
@@ -270,13 +270,13 @@ pnpm setup
 source ~/.bashrc
 ```
 
-Applied environment variables
+- Applied environment variables
 ```bash
 pnpm install
 pnpm dev
 ```
 
-Optional: 
+- Optional: 
 I encountered an issue where `pnpm add` failed. The following steps helped resolve it.
 Possible causes: pnpm version issues, leftover project config files, or system path limitations (common on Windows).
 In my specific case, it was likely due to an upgrade of the pnpm version.
@@ -295,3 +295,30 @@ pnpm config list
 pnpm install
 pnpm add XXXX
 ```
+
+###### Added PDF Support
+- Added fileType field in \src\interfaces\post.ts:
+
+- Placed PDF files in both \_posts\ and \public\pdfs\ directories
+Since PDFs are displayed directly in the page, a copy must be placed under public.
+Note: no auto-copy script has been implemented yet.
+
+- Added YAML files with the same name as the PDFs into the \_posts\ directory to store metadata.
+
+- Added cover images for PDF entries under \public\assets\blog\.
+
+- Updated getPostBySlug and getAllPosts in \src\lib\api.ts
+These functions now support reading PDF files from the _posts directory.
+
+- Modified the Post function in \src\app\posts\[slug]\page.tsx
+to support displaying PDF files.
+Note: when using generateMetadata, make sure to decode params.slug.
+
+- To prevent layout interference when rendering PDFs, 
+the returned PDF view in page.tsx uses full-screen fixed positioning:
+fixed inset-0: ensures the PDF container covers the entire viewport
+z-50: ensures the PDF displays above all other elements
+bg-white: provides a clean white background
+
+PDF <object> is absolutely positioned:
+absolute inset-0 w-full h-full: ensures the PDF fills the entire container
