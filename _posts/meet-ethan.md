@@ -1,6 +1,6 @@
 ---
 title: "Hello World! Meet Ethan"
-excerpt: "Hey there! I'm Ethan, born in Auckland, NZ. You can usually find me sprinting after a ball, tinkering with toys and electronics, or getting lost in the latest story my parents are reading to me. I'm always up for an adventure, whether at a theme park, the beach, or just the playground."
+excerpt: "Hey there! I'm Ethan, born in Auckland, New Zealand. Welcome to my world—here, you'll discover my story."
 coverImage: "/assets/blog/meet-ethan/cover.jpg"
 date: "2024-06-12T02:00:00.000+12:00"
 author:
