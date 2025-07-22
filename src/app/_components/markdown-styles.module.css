@@ -16,3 +16,20 @@
 .markdown h3 {
   @apply text-2xl mt-8 mb-4 leading-snug;
 }
+
+/* ✅ 显示 Markdown 中的无序列表小点 */
+.markdown ul {
+  list-style-type: disc;
+  padding-left: 1.5rem; /* 增加缩进让小点显示在正文外 */
+}
+
+/* ✅ 显示有序列表数字 */
+.markdown ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+
+/* ✅ 优化列表项之间的间距 */
+.markdown li {
+  margin-bottom: 0.25rem;
+}
