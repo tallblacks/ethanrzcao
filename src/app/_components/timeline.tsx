@@ -23,6 +23,7 @@ import FestivalIcon from '@mui/icons-material/Festival'
 import SportsMartialArtsIcon from '@mui/icons-material/SportsMartialArts'
 import SportsTennisIcon from '@mui/icons-material/SportsTennis'
 import DriveEtaIcon from '@mui/icons-material/DriveEta'
+import DirectionsBoatIcon from '@mui/icons-material/DirectionsBoat'
 
 import React from "react"
 import { EthanTimelineItem } from "@/interfaces/timelineitem"
@@ -46,7 +47,8 @@ const iconComponents = {
     'Festival': FestivalIcon,
     'MartialArts': SportsMartialArtsIcon,
     'Tennis': SportsTennisIcon,
-    'Car': DriveEtaIcon
+    'Car': DriveEtaIcon,
+    'Boat': DirectionsBoatIcon,
 }
 
 const getIconComponent = (iconName: keyof typeof iconComponents) => {
